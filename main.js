@@ -86,7 +86,7 @@
 
         function drawParticles() {
             ctx.save();
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.01)';
+            ctx.fillStyle = 'rgba(255, 255, 255, ' + (0.01 + Math.sin(time * 0.5)) * 0.9 + ')';
 
             for (var j = 0; j < 3; j++) {
                 for (var i = 0; i < 75; i++) {
