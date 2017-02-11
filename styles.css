@@ -58,14 +58,24 @@ header nav ul li {
     position: fixed;
     top: 0;
     left: 0;
-    background: black;
     z-index: -1000;
+}
+
+.blurred {
+    width: 50%;
+    height: 50%;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    z-index: -999;
 }
 
 
 .main-content__intro {
     width: 100%;
-    margin-top: 18%;
+    margin-top: 10%;
     font-size: 25pt;
     z-index: 1000;
     max-height: 50%;
@@ -75,4 +85,5 @@ header nav ul li {
 .main-content__intro-article {
     margin: 0 auto;
     width: 55%;
+    background-color: rgba(255, 255, 255, 0.95);
 }

@@ -58,7 +58,7 @@
         var w = ctx.canvas.width;
         var h = ctx.canvas.height;
         var numPoints = 30;
-        var baseLine = h * 0.75;
+        var baseLine = h * 1;
 
         loop();
 
@@ -70,7 +70,7 @@
         }
 
         function update() {
-            time += 0.01;
+            time += 0.01 + Math.random() * 0.01;
         }
 
         function clear() {
@@ -79,19 +79,19 @@
 
         function draw() {
             //clear();
-            drawWave();
+            //drawWave();
             drawParticles();
         }
 
 
         function drawParticles() {
             ctx.save();
-            ctx.fillStyle = 'rgba(255, 255, 255, ' + (0.01 + Math.sin(time * 0.5)) * 0.9 + ')';
+            ctx.fillStyle = 'rgba(127, 127, 127, ' + (0.001 + Math.sin(time * 0.05)) * 0.6 + ')';
 
-            for (var j = 0; j < 3; j++) {
-                for (var i = 0; i < 75; i++) {
-                    var x = Math.cos(time * 0.05 + (Math.sin(i) + Math.cos(j)) * Math.sin(i * j)) * w + w * 0.25;
-                    var y = Math.sin(time * 0.03 + x / baseLine * j) * baseLine + baseLine * 0.15;
+            for (var j = 4; j > 0.5; j -= j / 2.5) {
+                for (var i = 0; i < 50; i++) {
+                    var x = Math.cos(time * 0.02 + (Math.sin(i) + Math.cos(j)) * Math.sin(i * j) + 2) * w + w * 0.25;
+                    var y = Math.sin(time * 0.03 + x / baseLine * j) * baseLine + baseLine * 0.25;
                     var size = Math.floor(Math.max(1, Math.cos(time * 0.4) * 2)) + 0.5;
                     ctx.fillRect(x, y, size, size);
                 }
