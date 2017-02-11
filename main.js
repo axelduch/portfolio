@@ -84,9 +84,25 @@
         }
 
 
+        function palette() {
+            return [
+                [255, 255, 255],
+                [50, 50, 50],
+                [0, 0, 0],
+                [255, 100, 100],
+                [255, 255, 200],
+                [255, 255, 200],
+                [255, 255, 200]
+            ];
+        }
+
+
         function drawParticles() {
+            var colors = palette();
+            var color = colors[Math.random() * colors.length | 0];
+
             ctx.save();
-            ctx.fillStyle = 'rgba(127, 127, 127, ' + (0.4 + Math.sin(time * 0.01)) * 0.03 + ')';
+            ctx.fillStyle = 'rgba(' + color.join(',') + ',' + (0.4 + Math.sin(time * 0.01)) * 0.03 + ')';
 
             for (var j = 2; j > 0.2; j -= 0.008) {
                 for (var i = 0; i < 20; i += 0.1) {
