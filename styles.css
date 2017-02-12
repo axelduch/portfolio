@@ -61,21 +61,10 @@ header nav ul li {
     z-index: -1000;
 }
 
-.blurred {
-    width: 50%;
-    height: 50%;
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
-    z-index: -999;
-}
-
 
 .main-content__intro {
     width: 100%;
-    margin-top: 10%;
+    margin-top: 18%;
     font-size: 25pt;
     z-index: 1000;
     max-height: 50%;
