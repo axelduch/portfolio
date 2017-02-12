@@ -14,7 +14,7 @@
 
     function cancelAnimationFrameRequests () {
         for (var key in currentAnimationFrameRequests) {
-            cancelAnimationFrame(currentAnimationFrameRequests[key]) ;
+            cancelAnimationFrame(currentAnimationFrameRequests[key]);
             delete currentAnimationFrameRequests[key];
         }
     }
@@ -104,10 +104,16 @@
             ctx.save();
             ctx.fillStyle = 'rgba(' + color.join(',') + ',' + (0.4 + Math.sin(time * 0.01)) * 0.03 + ')';
 
+            var skipCount = 0;
             for (var j = 2; j > 0.2; j -= 0.008) {
                 for (var i = 0; i < 20; i += 0.1) {
                     var x = Math.cos(time * 0.04 + (Math.sin(i) + Math.cos(j)) * Math.sin(i * j) + 2) * w + w * 0.25;
                     var y = Math.sin(time * 0.07 + x / baseLine * j) * baseLine + baseLine * 0.25;
+
+                    if (x > w || x < 0 || y < 0 || y > h) {
+                        continue;
+                    }
+
                     var size = Math.floor(Math.max(1, Math.cos(time * 0.4) * 2)) + 0.5;
                     ctx.fillRect(x, y, size, size);
                 }
