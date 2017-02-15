@@ -19,6 +19,9 @@
 
 
     function onResizeWindow() {
+        cancelAnimationFrameRequests();
+        fitIntroEffectsCanvasToWindow();
+
         if (imgFetchThrottleId !== null) {
             clearTimeout(imgFetchThrottleId);
         }
