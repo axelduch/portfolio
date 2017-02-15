@@ -3,14 +3,50 @@
     var requestAnimationFrame = window.requestAnimationFrame;
     var currentAnimationFrameRequests = {};
 
-    start();
+    var imageData = null;
+    var imgFetchThrottleId = null;
+    var img = new Image();
+    img.crossOrigin = 'Anonymous';
+
+    window.addEventListener('load', onLoadWindow);
+    window.addEventListener('resize', onResizeWindow);
+    img.addEventListener('load', start, false);
+
+
+    function onLoadWindow() {
+        fetchNewImage();
+    }
+
+
+    function onResizeWindow() {
+        if (imgFetchThrottleId !== null) {
+            clearTimeout(imgFetchThrottleId);
+        }
+
+        imgFetchThrottleId = setTimeout(function () {
+            fetchNewImage();
+            imgFetchThrottleId = null;
+        }, 1000);
+    }
+
+
+    function fetchNewImage() {
+        img.src = generateRandomImageUrl(window.innerWidth, window.innerHeight);
+    }
+
 
     function start() {
+        imageData = createImageCanvasAndGetImageData();
+
         initCanvas();
         startIntroEffects();
     }
 
-    window.addEventListener('resize', start);
+
+    function generateRandomImageUrl(width, height) {
+        return 'https://crossorigin.me/' + 'https://unsplash.it/' + width + '/' + height + '/?random';
+    }
+
 
     function cancelAnimationFrameRequests () {
         for (var key in currentAnimationFrameRequests) {
@@ -18,6 +54,28 @@
             delete currentAnimationFrameRequests[key];
         }
     }
+
+
+    function createImageCanvasAndGetImageData() {
+        var imageCanvas = document.createElement('canvas');
+        var ctx = imageCanvas.getContext('2d');
+
+        imageCanvas.width = img.width;
+        imageCanvas.height = img.height;
+
+        if (img.width > window.innerWidth) {
+            var ratio = window.innerWidth / img.width;
+            ctx.scale(ratio, ratio);
+        } else if (img.height > window.innerHeight) {
+            var ratio = window.innerHeight / img.height;
+            ctx.scale(ratio, ratio);
+        }
+
+        ctx.drawImage(img, 0, 0);
+
+        return ctx.getImageData(0, 0, img.width, img.height);
+    }
+
 
     function initCanvas() {
         cancelAnimationFrameRequests();
@@ -79,7 +137,7 @@
 
         function draw() {
             //clear();
-            //drawWave();
+            // drawWave();
             drawParticles();
         }
 
@@ -97,24 +155,108 @@
         }
 
 
+        function getImageDataPixelAt(imageData, x, y) {
+            var pixelColorIndex = Math.floor(x) * 4 + Math.floor(y) * img.width * 4;
+
+            return [
+                imageData.data[pixelColorIndex + 0],
+                imageData.data[pixelColorIndex + 1],
+                imageData.data[pixelColorIndex + 2]
+            ];
+        }
+
+
+        function computeDistanceMap(color, palette) {
+            var distanceMap = new Array(palette.length);
+
+            var colorAverage = (color[0] + color[1] + color[2]) / 3;
+
+            // compute distanceMap
+            for (var i = 0, l = palette.length; i < l; i++) {
+                // average channel distance and max channel distance
+                var paletteColor = palette[i];
+                var paletteColorAverage = (paletteColor[0] + paletteColor[1] + paletteColor[2]) / 3;
+                var paletteColorAverageDist = Math.abs(colorAverage - paletteColorAverage);
+                var maxChannelDist = 0;
+
+                for (var j = 0; j < 3; j++) {
+                    var channelDist = Math.abs(paletteColor[j] - color[j]);
+
+                    if (channelDist > maxChannelDist) {
+                        maxChannelDist =  channelDist;
+                    }
+                }
+
+                distanceMap[i] = [paletteColorAverageDist, maxChannelDist];
+            }
+
+            return distanceMap;
+        }
+
+
+        function nearestColor(color, palette) {
+            var distanceMap = computeDistanceMap(color, palette);
+
+            // lowest score wins
+            var bestScore = Infinity;
+            var bestColor;
+
+            for (var i = 0, l = distanceMap.length; i < l; i++) {
+                var currentScore = distanceMap[i][0] * 2 + distanceMap[i][1] * 3;
+                if (currentScore < bestScore) {
+                    bestScore = currentScore;
+                    bestColor = palette[i];
+                }
+            }
+
+            return bestColor;
+        }
+
+
+        function nearestColorInPaletteAt(x, y) {
+            var pixelColor = getImageDataPixelAt(imageData, x, y);
+            var computedColor = nearestColor(pixelColor, palette());
+
+            return computedColor;
+        }
+
+
         function drawParticles() {
             var colors = palette();
             var color = colors[Math.random() * colors.length | 0];
+            var alpha = (0.4 + Math.sin(time * 0.01)) * 0.03;
+            var colorString = 'rgba(' + color.join(',') + ',' + alpha + ')';
 
             ctx.save();
-            ctx.fillStyle = 'rgba(' + color.join(',') + ',' + (0.4 + Math.sin(time * 0.01)) * 0.03 + ')';
+            ctx.fillStyle = colorString;
 
             var skipCount = 0;
             for (var j = 2; j > 0.2; j -= 0.008) {
                 for (var i = 0; i < 20; i += 0.1) {
                     var x = Math.cos(time * 0.04 + (Math.sin(i) + Math.cos(j)) * Math.sin(i * j) + 2) * w + w * 0.25;
                     var y = Math.sin(time * 0.07 + x / baseLine * j) * baseLine + baseLine * 0.25;
+                    var size;
 
                     if (x > w || x < 0 || y < 0 || y > h) {
                         continue;
                     }
 
-                    var size = Math.floor(Math.max(1, Math.cos(time * 0.4) * 2)) + 0.5;
+                    var xyInImage = x < img.width && y < img.height;
+
+                    if (xyInImage && Math.random() < 0.02) {
+                        var pixelColor = nearestColorInPaletteAt(x, y);
+                        ctx.fillStyle = 'rgba(' + pixelColor.join(',') + ',' + alpha + ')';
+
+                    } else if (xyInImage && Math.random() < 0.07) {
+                        var pixelColor = getImageDataPixelAt(imageData, x, y);
+                        ctx.fillStyle = 'rgba(' + pixelColor.join(',') + ',' + 0.05 + ')';
+
+                    } else {
+                        size = Math.floor(Math.max(1, Math.cos(time * 0.4) * 2)) + 0.5;
+                        ctx.fillStyle = colorString;
+                    }
+
+
                     ctx.fillRect(x, y, size, size);
                 }
             }
