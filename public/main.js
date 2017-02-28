@@ -14,7 +14,6 @@
 
 
     function onLoadWindow() {
-        console.log($);
         fetchNewImage();
     }
 
