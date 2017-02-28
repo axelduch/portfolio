@@ -44,7 +44,7 @@
             baseRatio = 'h_' + h;
         }
 
-        img.src = 'http://res.cloudinary.com/hiqvwsatj/image/upload/' + baseRatio + '/v1488241675/landscape-mountains-nature-mountain_viueho.jpg';
+        img.src = 'https://res.cloudinary.com/hiqvwsatj/image/upload/' + baseRatio + '/v1488241675/landscape-mountains-nature-mountain_viueho.jpg';
     }
 
 
