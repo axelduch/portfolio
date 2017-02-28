@@ -35,28 +35,16 @@
 
 
     function fetchNewImage() {
-        var w = window.innerWidth;
-        var h = window.innerHeight;
+        var w = (window.screen && window.screen.width) || window.innerWidth;
+        var h = (window.screen && window.screen.height) || window.innerHeight;
 
-        img.src = generateRandomImageUrl(w, h);
+        if (w > h) {
+            baseRatio = 'w_' + w;
+        } else {
+            baseRatio = 'h_' + h;
+        }
 
-        askGoogleImage(w, h);
-    }
-
-
-    function askGoogleImage(width, height) {
-        var apiKey = 'AIzaSyB6F-85BK-CzGME8suBAFqprRKVElFb4Gw';
-        var customSearchEngineId = '011132831271473131608:z-7qyjvu2wg';
-        var imageSize = width + 'x' + height;
-        var url = 'https://www.googleapis.com/customsearch/v1?key=' + apiKey +
-            '&cx=' + customSearchEngineId +
-            '&imgSize' + imageSize +
-            '&num=1' +
-            '&q=nature&searchType=image&high=on&alt=json';
-
-        $.ajax(url).then(function (data) {
-            console.log(data);
-        });
+        img.src = 'http://res.cloudinary.com/hiqvwsatj/image/upload/' + baseRatio + '/v1488241675/landscape-mountains-nature-mountain_viueho.jpg';
     }
 
 
@@ -65,11 +53,6 @@
 
         initCanvas();
         startIntroEffects();
-    }
-
-
-    function generateRandomImageUrl(width, height) {
-        return 'https://crossorigin.me/' + 'http://lorempixel.com/' + width + '/' + height + '/nature';
     }
 
 
