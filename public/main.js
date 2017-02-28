@@ -33,9 +33,34 @@
     }
 
 
+    function isDevice () {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+
+    function getWindowInnerSize() {
+        var innerWidth;
+        var innerHeight;
+
+        if (isDevice()) {
+            innerWidth =  window.screen.width;
+            innerHeight = window.screen.height;
+        } else {
+            innerWidth = window.innerWidth;
+            innerHeight = window.innerHeight;
+        }
+
+        return {
+            width: innerWidth,
+            height: innerHeight
+        };
+    }
+
+
     function fetchNewImage() {
-        var w = (window.screen && window.screen.width) || window.innerWidth;
-        var h = (window.screen && window.screen.height) || window.innerHeight;
+        var windowInnerSize = getWindowInnerSize();
+        var w = windowInnerSize.width;
+        var h = windowInnerSize.height;
 
         if (w > h) {
             baseRatio = 'w_' + w;
