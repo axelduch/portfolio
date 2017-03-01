@@ -65,7 +65,7 @@ header nav ul li {
 .main-content__intro {
     width: 100%;
     margin-top: 18%;
-    font-size: 25pt;
+    font-size: 2em;
     z-index: 1000;
     max-height: 50%;
 }
