@@ -62,7 +62,11 @@
         var w = windowInnerSize.width;
         var h = windowInnerSize.height;
 
-        baseRatio = 'h_' + h;
+        if (w >= h) {
+            baseRatio = 'w_' + w;
+        } else {
+            baseRatio = 'h_' + h;
+        }
 
         img.src = 'https://res.cloudinary.com/hiqvwsatj/image/upload/' + baseRatio + '/v1488241675/landscape-mountains-nature-mountain_viueho.jpg';
     }
