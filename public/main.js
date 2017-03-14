@@ -71,26 +71,15 @@
     }
 
 
-    function approximateSize(originalWidth, originalHeight, targetWidthFit, targetHeightFit) {
-        var ratio = originalWidth / originalHeight;
-        var targetRatio = targetWidthFit / targetHeightFit;
-
-        console.log(ratio, targetRatio);
-
-    }
-
-
     function idealSizeForCloudinaryImage(cloudinaryImageData) {
         var originalWidth = cloudinaryImageData.width;
         var originalHeight = cloudinaryImageData.height;
-        var originalRatio = originalWidth / originalHeight;
         var windowInnerSize = getWindowInnerSize();
         var w = windowInnerSize.width;
         var h = windowInnerSize.height;
         var idealWidth;
         var idealHeight;
 
-        approximateSize(originalWidth, originalHeight, w, h);
 
         // landscape screen size
         if (w >= h) {
