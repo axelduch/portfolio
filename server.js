@@ -6,7 +6,7 @@ var MongoClient = require('mongodb').MongoClient;
 Promise.promisifyAll(MongoClient);
 
 // Setup connection to db first
-MongoClient.connectAsync(process.env.MONGODB_URI || 'mongodb://localhost:27017')
+MongoClient.connectAsync(process.env.MONGODB_URI || 'mongodb://localhost:27017/test')
     .then(setupApp)
     .catch(function (err) {
         console.log(err);
@@ -28,10 +28,12 @@ function setupApp(db) {
 
 
     app.get('/available-images', function (request, response) {
-        var availableImages = db.collection('images').find();
+        var col = db.collection('images');
 
         response.setHeader('Content-Type', 'application/json');
-        response.send(JSON.stringify(availableImages, null, 3));
+        col.find().limit(5).toArray().then(function (availableImages) {
+            response.send(availableImages);
+        });
     });
 
     app.listen(app.get('port'), function() {
