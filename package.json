@@ -17,8 +17,12 @@
   },
   "homepage": "https://github.com/axelduch/portfolio#readme",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "ejs": "^2.5.6",
     "express": "^4.14.1",
     "mongodb": "^2.2.24"
+  },
+  "devDependencies": {
+    "cloudinary": "^1.8.0"
   }
 }
