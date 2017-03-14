@@ -57,18 +57,74 @@
     }
 
 
+    function askAPIavailableImages() {
+        return $.get('/available-images');
+    }
+
+
     function fetchNewImage() {
+        askAPIavailableImages().then(function (availableImages) {
+            var image = availableImages[Math.random() * availableImages.length | 0];
+            var idealImageSize = idealSizeForCloudinaryImage(image);
+            img.src = getCloudinaryImageSrc(image, idealImageSize.width, idealImageSize.height);
+        });
+    }
+
+
+    function approximateSize(originalWidth, originalHeight, targetWidthFit, targetHeightFit) {
+        var ratio = originalWidth / originalHeight;
+        var targetRatio = targetWidthFit / targetHeightFit;
+
+        console.log(ratio, targetRatio);
+
+    }
+
+
+    function idealSizeForCloudinaryImage(cloudinaryImageData) {
+        var originalWidth = cloudinaryImageData.width;
+        var originalHeight = cloudinaryImageData.height;
+        var originalRatio = originalWidth / originalHeight;
         var windowInnerSize = getWindowInnerSize();
         var w = windowInnerSize.width;
         var h = windowInnerSize.height;
+        var idealWidth;
+        var idealHeight;
 
+        approximateSize(originalWidth, originalHeight, w, h);
+
+        // landscape screen size
         if (w >= h) {
-            baseRatio = 'w_' + w;
+            idealHeight = Math.ceil(originalHeight / originalWidth) * w;
+        // portrait screen size
         } else {
-            baseRatio = 'h_' + h;
+            idealWidth = Math.ceil(originalWidth / originalHeight) * h;
         }
 
-        img.src = 'https://res.cloudinary.com/hiqvwsatj/image/upload/' + baseRatio + '/v1488241675/landscape-mountains-nature-mountain_viueho.jpg';
+        // if value is undefined then it means auto
+        return {
+            width: idealWidth,
+            height: idealHeight
+        }
+    }
+
+
+    function getCloudinaryImageSrc(cloudinaryImageData, width, height) {
+        var urlParts = cloudinaryImageData.secure_url.split('/upload/');
+        var params = [];
+
+        if (width !== undefined) {
+            params.push('w_' + width);
+        }
+
+        if (height !== undefined) {
+            params.push('h_' + height);
+        }
+
+        var imageParamsString = params.join();
+
+        urlParts.splice(1, 0, '/upload/' + imageParamsString + '/')
+
+        return urlParts.join('');
     }
 
 
@@ -94,14 +150,6 @@
 
         imageCanvas.width = img.width;
         imageCanvas.height = img.height;
-
-        if (img.width > window.innerWidth) {
-            var ratio = window.innerWidth / img.width;
-            ctx.scale(ratio, ratio);
-        } else if (img.height > window.innerHeight) {
-            var ratio = window.innerHeight / img.height;
-            ctx.scale(ratio, ratio);
-        }
 
         ctx.drawImage(img, 0, 0);
 
