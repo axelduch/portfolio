@@ -1,0 +1,27 @@
+{
+  "name": "portfolio",
+  "description": "",
+  "main": "public/main.js",
+  "authors": [
+    "Axel Duch <axlduch@gmail.com>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "portfolio",
+    "axel",
+    "duch"
+  ],
+  "homepage": "https://github.com/axelduch/portfolio",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "3.2",
+    "normalize-css": "^5.0.0",
+    "fullpage.js": "^2.9.4"
+  }
+}

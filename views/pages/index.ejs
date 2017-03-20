@@ -6,27 +6,37 @@
     <meta description="Full stack Web development with JavaScript and other back-end frameworks">
     <title>Axel Duch's portfolio</title>
     <link rel="canonical" href="http://www.axelduch.com/">
+    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+    <link rel="stylesheet" href="bower_components/fullpage.js/dist/jquery.fullpage.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!--header>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header-->
     <div class="main-content">
         <canvas id="introEffects" class="main-content__canvas"></canvas>
-
-        <section class="main-content__intro">
-            <div class="blurred"></div>
-            <article class="main-content__intro-article">
-                Hi there, I'm <strong>Axel Duch</strong> a freelance <strong>web developer</strong> located in Ireland.
-                I used to work as an employee until recently, maybe you've heard of
-                <a target="_blank" href="https://teamwork.com">Teamwork.com</a>?
-            </article>
+        <div class="wrapper">
+            <div id="fullpage">
+                <div class="section">
+                    <section class="main-content__section main-content__intro">
+                        <img src="profile.jpeg" alt="axel duch profile picture" class="profile-picture">
+                        <h1>
+                            Hi there, I'm Axel Duch a freelance web developer located in Ireland
+                        </h1>
+                        <article class="main-content__intro-article">
+                            I like to deliver quality work that suits what the customers want, and what the users need.
+                        </article>
+                    </section>
+                </div>
+                <div class="section">
+                    <section class="main-content__section">
+                        <article>
+                                I also used to work as an employee until recently, maybe you've heard of
+                            <a target="_blank" href="https://teamwork.com">Teamwork.com</a>?
+                        </article>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <footer>
             <ul class="main-content__intro-article-networks">
                 <li class="main-content__intro-article-network-logo">
                     <a href="https://linkedin.com/in/axelduch" target="_blank"><div class="linkedin-logo"></div></a>
@@ -35,13 +45,11 @@
                     <a href="https://github.com/axelduch" target="_blank"><div class="main-content__intro-article-network-logo github-logo"></div></a>
                 </li>
             </ul>
-        </section>
-
-        <footer>
             <div>Icons made by <a href="http://www.flaticon.com/authors/dave-gandy" rel="nofollow" title="Dave Gandy">Dave Gandy</a> and  <a href="http://www.freepik.com" rel="nofollow" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
         </footer>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/fullpage.js/dist/jquery.fullpage.min.js"></script>
     <script src="main.js"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -12,8 +12,12 @@
     window.addEventListener('load', onLoadWindow);
     window.addEventListener('resize', onResizeWindow);
 
+    function fullPageIt() {
+        $('#fullpage').fullpage();
+    }
 
     function onLoadWindow() {
+        fullPageIt();
         fetchNewImage();
     }
 
@@ -79,15 +83,19 @@
         var h = windowInnerSize.height;
         var idealWidth;
         var idealHeight;
+        var approximationCount = 0;
+        var maxApproximationCount = 1000;
 
 
         // landscape screen size
-        if (w >= h) {
-            idealHeight = Math.ceil(originalHeight / originalWidth) * w;
-        // portrait screen size
-        } else {
-            idealWidth = Math.ceil(originalWidth / originalHeight) * h;
+        idealHeight = originalHeight / originalWidth * w;
+
+        while (idealHeight < h && approximationCount < maxApproximationCount) {
+            idealHeight *= 1.5;
+            approximationCount++;
         }
+
+        idealHeight = Math.ceil(idealHeight);
 
         // if value is undefined then it means auto
         return {
