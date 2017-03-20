@@ -1,0 +1,40 @@
+@media screen and (min-device-width: 800px) {
+
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 50px;
+    }
+
+
+    .main-content {
+        width: 100%;
+        display: table;
+    }
+
+
+    .wrapper {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+
+    .main-content__section {
+        margin: 0 auto;
+        padding: 5% 15%;
+        font-size: 2em;
+        max-width: 55%;
+        padding-bottom: 2%;
+    }
+
+
+    .main-content__intro {
+        margin-top: -100px;
+        max-width: 900px;
+    }
+
+
+
+    .main-content__intro-article-networks {
+        margin-bottom: 3%;
+    }
+}

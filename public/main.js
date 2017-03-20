@@ -18,22 +18,31 @@
 
     function onLoadWindow() {
         fullPageIt();
-        fetchNewImage();
+
+        var windowInnerSize = getWindowInnerSize();
+
+        if (windowInnerSize.width >= 800) {
+            fetchNewImage();
+        }
     }
 
 
     function onResizeWindow() {
+        var windowInnerSize = getWindowInnerSize();
+
         cancelAnimationFrameRequests();
         fitIntroEffectsCanvasToWindow();
 
-        if (imgFetchThrottleId !== null) {
-            clearTimeout(imgFetchThrottleId);
-        }
+        if (windowInnerSize.width >= 800) {
+            if (imgFetchThrottleId !== null) {
+                clearTimeout(imgFetchThrottleId);
+            }
 
-        imgFetchThrottleId = setTimeout(function () {
-            fetchNewImage();
-            imgFetchThrottleId = null;
-        }, 1000);
+            imgFetchThrottleId = setTimeout(function () {
+                fetchNewImage();
+                imgFetchThrottleId = null;
+            }, 1000);
+        }
     }
 
 
@@ -126,10 +135,14 @@
 
 
     function start() {
-        imageData = createImageCanvasAndGetImageData();
+        var windowInnerSize = getWindowInnerSize();
 
-        initCanvas();
-        startIntroEffects();
+        if (windowInnerSize.width >= 800) {
+            imageData = createImageCanvasAndGetImageData();
+
+            initCanvas();
+            startIntroEffects();
+        }
     }
 
 
