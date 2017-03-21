@@ -1,10 +1,16 @@
 @media screen and (max-device-width: 799px) {
     body {
-        font-size: 2em;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,eaeaea+53,cecece+82,b2b2b2+100 */
+        background: rgb(255,255,255); /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(234,234,234,1) 53%, rgba(206,206,206,1) 82%, rgba(178,178,178,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(234,234,234,1) 53%,rgba(206,206,206,1) 82%,rgba(178,178,178,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(234,234,234,1) 53%,rgba(206,206,206,1) 82%,rgba(178,178,178,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b2b2b2',GradientType=0 ); /* IE6-9 */
+        font-size: 3vmax;
     }
 
     h1 {
-        font-size: 0.8em;
+        font-size: 3vmax;
     }
 
     .profile-picture {
@@ -20,12 +26,15 @@
         box-shadow: 10px 10px 38px 0px rgba(0,0,0,0.1);
     }
 
+    /* fullPage.js uses vertical align for each section so it needs to be overriden */
     .fp-table:nth-of-type(1) > .fp-tableCell {
         vertical-align: top;
     }
 
 
     .main-content__section {
+        font-family: Raleway;
+        font-size: 5vmax;
         padding: 0 2%;
     }
 
@@ -50,7 +59,9 @@
         margin-bottom: 1%;
     }
 
-    .copyrights {
-        font-size: 0.25em;
+    .github-logo, .linkedin-logo {
+        background-size: 12vmax;
+        width: 12vmax;
+        height: 12vmax;
     }
 }
