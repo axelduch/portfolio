@@ -3,7 +3,7 @@
     not all and (orientation: portrait) {
 
     h1 {
-        font-size: 3.1vmax;
+        font-size: 3.1vmin;
         margin-bottom: 50px;
     }
 
