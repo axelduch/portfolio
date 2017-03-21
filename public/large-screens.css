@@ -42,8 +42,9 @@
         -webkit-transition: transform 0.2s ease;
         -o-transition: transform 0.2s ease;
         transition: transform 0.2s ease;
-        -webkit-transition-timing-function: scale(1.2) rotate(-5deg);
-        -o-transition-timing-function: scale(1.2) rotate(-5deg);
-        transition-timing-function: scale(1.2) rotate(-5deg);
+        -webkit-transform: scale(1.2) rotate(-5deg);
+        -ms-transform: scale(1.2) rotate(-5deg);
+        -o-transform: scale(1.2) rotate(-5deg);
+        transform: scale(1.2) rotate(-5deg);
     }
 }
