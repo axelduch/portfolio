@@ -6,6 +6,8 @@
     var imageData = null;
     var imgFetchThrottleId = null;
     var img = new Image();
+    var iteration = 0;
+    var MAX_ITERATION = 4500;
     img.crossOrigin = 'Anonymous';
 
     img.addEventListener('load', start, false);
@@ -80,6 +82,7 @@
             var image = availableImages[Math.random() * availableImages.length | 0];
             var idealImageSize = idealSizeForCloudinaryImage(image);
             img.src = getCloudinaryImageSrc(image, idealImageSize.width, idealImageSize.height);
+            iteration = 0;
         });
     }
 
@@ -212,8 +215,13 @@
 
         function loop() {
             delete currentAnimationFrameRequests.introEffects;
-            update();
-            draw();
+
+            if (iteration <= MAX_ITERATION) {
+                update();
+                draw();
+                iteration += 0.1;
+            }
+
             currentAnimationFrameRequests.introEffects = requestAnimationFrame(loop);
         }
 
