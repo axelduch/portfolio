@@ -1,4 +1,4 @@
-@media screen and (max-device-width: 799px) {
+@media screen and (orientation: portrait) and (max-device-width: 799px) {
     body {
         /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,eaeaea+53,cecece+82,b2b2b2+100 */
         background: rgb(255,255,255); /* Old browsers */
@@ -33,7 +33,6 @@
 
 
     .main-content__section {
-        font-family: Raleway;
         font-size: 5vmax;
         padding: 0 2%;
     }

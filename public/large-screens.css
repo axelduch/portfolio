@@ -1,7 +1,9 @@
-@media screen and (min-device-width: 800px) {
+@media
+    screen and (min-device-width: 800px),
+    not all and (orientation: portrait) {
 
     h1 {
-        font-size: 3vmax;
+        font-size: 3.1vmax;
         margin-bottom: 50px;
     }
 
@@ -21,7 +23,7 @@
     .main-content__section {
         margin: 0 auto;
         padding: 5% 15%;
-        font-size: 3vmin;
+        font-size: 2.5vmax;
         max-width: 55%;
         padding-bottom: 2%;
     }
