@@ -132,6 +132,18 @@ li {
 }
 
 
+.contact-info {
+    color: #333;
+    font-size: 1.5vmax;
+    font-family: "Open Sans";
+}
+
+.contact-info__data {
+    color: #000;
+    font-weight: bold;
+}
+
+
 .copyrights {
     position: absolute;
     font-size: 0.75vmin;
