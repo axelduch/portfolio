@@ -97,7 +97,6 @@ li {
 
 .main-content__section {
     margin: 0 auto;
-    padding: 5% 15%;
     font-size: 2vw;
     padding-bottom: 2%;
 }
@@ -111,7 +110,7 @@ li {
 
 
 .profile-picture {
-    max-width: 255px;
+    max-width: 14vmax;
     -webkit-border-radius: 155px;
     -moz-border-radius:    155px;
     border-radius:         155px;
@@ -128,9 +127,9 @@ li {
 
 
 .main-content__intro-article-network-logo {
-    background-size: 7vmax;
-    width: 7vmax;
-    height: 7vmax;
+    background-size: 6vmax;
+    width: 6vmax;
+    height: 6vmax;
     -webkit-transition: 0.4s ease;
     -o-transition: 0.4s ease;
     transition: 0.4s ease;
