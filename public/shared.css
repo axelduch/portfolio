@@ -31,10 +31,13 @@ a:hover {
 
 footer {
     position: fixed;
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
     bottom: 4%;
     width: 100%;
     left: 0;
-    padding-top: 2%;
+    padding: 1%;
     font-size: 0.75vw;
     color: #ccc;
 }
@@ -117,15 +120,10 @@ li {
 
 .main-content__intro-article-networks {
     margin-bottom: 3%;
-    width: 100%;
-    display: inline-block;
 }
 
 
 .main-content__intro-article-network-logo {
-    display: inline-block;
-    float: right;
-    margin-right: 3%;
     background-size: 7vmax;
     width: 7vmax;
     height: 7vmax;
@@ -136,14 +134,20 @@ li {
 
 
 .contact-info {
-    color: #333;
+    color: #555;
     font-size: 1.5vmax;
     font-family: "Open Sans";
 }
 
+
 .contact-info__data {
-    color: #000;
+    color: #333;
     font-weight: bold;
+}
+
+
+.logo-container {
+    margin: 0 auto;
 }
 
 
@@ -154,20 +158,6 @@ li {
     left: 1%;
     opacity: 0.1;
 }
-
-
-.logo-container {
-    position: absolute;
-}
-
-.github-container {
-    right: 11%;
-}
-
-.linkedin-container {
-    right: 1%;
-}
-
 
 
 .github-logo {

@@ -54,13 +54,10 @@
     }
 
 
-    .main-content__intro-article-networks {
-        margin-bottom: 1%;
+    .github-logo, .linkedin-logo {
+        background-size: 12vmin;
+        width: 12vmin;
+        height: 12vmin;
     }
 
-    .github-logo, .linkedin-logo {
-        background-size: 12vmax;
-        width: 12vmax;
-        height: 12vmax;
-    }
 }
