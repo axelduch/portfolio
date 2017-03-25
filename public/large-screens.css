@@ -10,9 +10,9 @@
 
     footer {
         background: rgba(255, 255, 255, 1);
-        -webkit-box-shadow: 10px 10px 38px 0px rgba(0,0,0,0.1);
-        -moz-box-shadow: 10px 10px 38px 0px rgba(0,0,0,0.1);
-        box-shadow: 10px 10px 38px 0px rgba(0,0,0,0.1);
+        -webkit-box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.3);
+        -moz-box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.3);
+        box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.3);
     }
 
 
@@ -31,14 +31,19 @@
     .main-content__section {
         margin: 0 auto;
         font-size: 2.5vmax;
-        margin-top: -13%;
         max-width: 55%;
         padding-bottom: 2%;
     }
 
 
     .main-content__intro {
+        margin-top: -13%;
         max-width: 80%;
+    }
+
+
+    .main-content__intro-article-networks {
+        margin-top: -5%;
     }
 
 
