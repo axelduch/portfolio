@@ -47,6 +47,23 @@
             </span>
             <a href="https://linkedin.com/in/axelduch" target="_blank"><div class="main-content__intro-article-network-logo linkedin-logo"></div></a>
             <a href="https://github.com/axelduch" target="_blank"><div class="main-content__intro-article-network-logo github-logo"></div></a>
+            <!--
+                PeoplePerHour Profile Widget
+                The div#pph-hire me is the element
+                where the iframe will be inserted.
+                You may move this element wherever
+                you need to display the widget
+            -->
+            <div id="pph-hireme"></div>
+            <script type="text/javascript">
+            (function(d, s) {
+                var useSSL = 'https:' == document.location.protocol;
+                var js, where = d.getElementsByTagName(s)[0],
+                js = d.createElement(s);
+                js.src = (useSSL ? 'https:' : 'http:') +  '//www.peopleperhour.com/hire/1847534339/1619144.js?width=728&height=115&orientation=horizontal&theme=light&rnd='+parseInt(Math.random()*10000, 10);
+                try { where.parentNode.insertBefore(js, where); } catch (e) { if (typeof console !== 'undefined' && console.log && e.stack) { console.log(e.stack); } }
+            }(document, 'script'));
+            </script>
         </footer>
         <div class="copyrights">Icons made by <a href="http://www.flaticon.com/authors/dave-gandy" rel="nofollow" title="Dave Gandy">Dave Gandy</a> and  <a href="http://www.freepik.com" rel="nofollow" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     </div>
