@@ -226,7 +226,7 @@
         }
 
         function update() {
-            time += 0.007;
+            time += 0.08;
         }
 
         function clear() {
@@ -322,15 +322,15 @@
         function drawParticles() {
             var colors = palette();
             var color = colors[Math.random() * colors.length | 0];
-            var alpha = (0.4 + Math.sin(time * 0.01)) * 0.03;
+            var alpha = Math.max(0.6, 0.6 + Math.sin(time * 0.01)) * 0.1;
             var colorString = 'rgba(' + color.join(',') + ',' + alpha + ')';
 
             ctx.save();
             ctx.fillStyle = colorString;
 
             var skipCount = 0;
-            for (var j = 2; j > 0.2; j -= 0.008) {
-                for (var i = 0; i < 20; i += 0.1) {
+            for (var j = 2; j > 0.2; j -= 0.024) {
+                for (var i = 0; i < 20; i += 0.2) {
                     var x = Math.cos(time * 0.04 + (Math.sin(i) + Math.cos(j)) * Math.sin(i * j) + 2) * w + w * 0.25;
                     var y = Math.sin(time * 0.07 + x / baseLine * j) * baseLine + baseLine * 0.25;
                     var size;
