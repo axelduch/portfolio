@@ -8,6 +8,7 @@
     var img = new Image();
     var iteration = 0;
     var MAX_ITERATION = 4500;
+    var fullPageReady = false;
     img.crossOrigin = 'Anonymous';
 
     img.addEventListener('load', start, false);
@@ -15,7 +16,15 @@
     window.addEventListener('resize', onResizeWindow);
 
     function fullPageIt() {
-        $('#fullpage').fullpage();
+        $el = $('#fullpage');
+
+        if (fullPageReady) {
+            $.fn.fullpage.destroy($el);
+        } else {
+            fullPageReady = true;
+        }
+
+        $el.fullpage();
     }
 
     function onLoadWindow() {
@@ -34,6 +43,8 @@
 
         cancelAnimationFrameRequests();
         fitIntroEffectsCanvasToWindow();
+
+        fullPageIt();
 
         if (windowInnerSize.width >= 800) {
             if (imgFetchThrottleId !== null) {
